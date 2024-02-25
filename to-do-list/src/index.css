@@ -35,6 +35,7 @@ h1 {
   line-height: 1.1;
 }
 
+/* Näistä header ja body divin säätöä */
 #header {
   display: grid;
   place-items: top;
@@ -43,7 +44,7 @@ h1 {
 
 #body {
   display: grid;
-  height: 88px; /* Adjust height as needed */
+  height: 88px; 
 
   border-radius: 10px;
   border-top: 2px solid black; 

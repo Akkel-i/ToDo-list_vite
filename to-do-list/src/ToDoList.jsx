@@ -8,19 +8,23 @@ function TodoList() {
     const [todos, setTodos] = useState([]);
     const [date, setDate] = useState("");
 
+    // Description kenttä tallennus
     const handleChangeDescription = (event) => {
         setDescription(event.target.value);
     };
+    // Date kentän tallennus
     const handleChangeDate = (event) => {
         setDate(event.target.value);
     };
 
+    // Tallentaa todo-olentoon tiedot ja tyhjentää kentät
     const addTodo = () => {
         setTodos([...todos, { description: description, date: date }]);
         setDescription("");
         setDate("");
     };
 
+    // Delete funktio nappiin
     const handleDelete = (indexToDelete) => {
         setTodos(todos.filter((_, index) => index !== indexToDelete));
     };
@@ -37,12 +41,14 @@ function TodoList() {
             <button onClick={addTodo}>Add</button>
             <table>
                 <tbody>
+                    {/* Otsikot */}
                 <tr>
                     <th>Description</th>
                     <th>Date</th>
                 </tr>
                 </tbody>
                 <tbody>
+                    {/* kiertää todo läpi ja tuo tiedot sekä delete-napin */}
                     {todos.map((todo, index) => (
                         <tr key={index}>
                             <td>{todo.description}</td>
