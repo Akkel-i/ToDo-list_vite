@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-    <h1>Moikka!</h1>
+{/*     <h1>Moikka!</h1> */}
     <TodoList />
     </>
   )
