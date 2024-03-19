@@ -13,7 +13,7 @@ export default function ToDoGrid(props) {
         { field: 'date', filter: true, floatingFilter: true, minWidth: 450 },
         {
             field: 'priority', filter: true, floatingFilter: true, minWidth: 450, 
-            cellStyle: params => params.value === "High" ? { color: 'red' } : { color: 'black' }
+            cellStyle: params => params.value.toLowerCase() === "high" ? { color: 'red' } : { color: 'black' }
         },
     ]);
 

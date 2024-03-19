@@ -1,34 +1,29 @@
 import { useState } from 'react'
-//import './App.css'
-import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
-import TodoList from './component/ToDoList'
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import 'dayjs/locale/fi';
+import './App.css'
+
+import { Link, Outlet } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 
 function App() {
 
   return (
-    <>
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
-      <Container maxWidth="xl">
-        <CssBaseline />
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6">
-              Header bar To-do list!
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <TodoList />
-      </Container>
-      </LocalizationProvider>
-    </>
+    <div className="App">
+      <nav>
+
+        <Link to={"/"}>
+          <Button variant='outlined' >
+            Home</Button>
+        </Link>
+        <Link to={"/TheList"}>
+          <Button variant='outlined'>The List
+          </Button>
+        </Link>
+
+      </nav>
+
+      <Outlet />
+    </div>
   );
 }
 
