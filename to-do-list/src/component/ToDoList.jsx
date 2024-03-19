@@ -2,6 +2,16 @@
 import { useState } from "react";
 import ToDoTable from "./TodoTable";
 import ToDoGrid from "./ToDoGrid";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { MobileDatePicker } from "@mui/x-date-pickers";
+import dayjs from 'dayjs';
+
+
 
 
 function TodoList() {
@@ -9,7 +19,7 @@ function TodoList() {
 
     //
 
-    const [todo, setTodo] = useState({ description: "", date: "", priority: "" });
+    const [todo, setTodo] = useState({ description: "", date: null, priority: "" });
     const [todos, setTodos] = useState([]);
 
 
@@ -19,61 +29,61 @@ function TodoList() {
         setTodo({ ...todo, [event.target.name]: event.target.value });
     };
 
+    const handleChangeDate = (date) => {
+        setTodo({ ...todo, date: date });
+    };
+
     const addTodo = () => {
         setTodos([...todos, todo]);
-        setTodo({ description: "", date: "", priority: "" }); // poistaa todos
+        setTodo({ description: "", date: null, priority: "" }); // poistaa todos
     };
 
     const handleDelete = (index) => {
         setTodos(todos.filter((item, i) => i != index));
     };
-    /*         const handleDelete = () => {
-                setTodos(todos.filter((todo, index) => 
-                    index != gridRef.current.getSelectedNodes()[0].id))
-              }; */
 
-
-    // Ykkösvedos alapuolella
-    /*     // alustetaan statet
-        const [description, setDescription] = useState("");
-        const [todos, setTodos] = useState([]);
-        const [date, setDate] = useState("");
-    
-        // Description kenttä tallennus
-        const handleChangeDescription = (event) => {
-            setDescription(event.target.value);
-        };
-        // Date kentän tallennus
-        const handleChangeDate = (event) => {
-            setDate(event.target.value);
-        };
-    
-        // Tallentaa todo-olentoon tiedot ja tyhjentää kentät
-        const addTodo = () => {
-            setTodos([...todos, { description: description, date: date }]);
-            setDescription("");
-            setDate("");
-        };
-    
-        // Delete funktio nappiin
-        const handleDelete = (indexToDelete) => {
-            setTodos(todos.filter((_, index) => index !== indexToDelete));
-        }; */
-    // Ykkösvedos loppuu
 
     return (
         <>
-            <div id="header">
+            {/*             <div id="header">
                 <h1>ToDo List!!</h1>
-            </div>
-            <input type="description" name="description" placeholder="description" value={todo.description} onChange={handleChange} />
-            <input type="date" name="date" placeholder="date" value={todo.date} onChange={handleChange} />
-            <input type="priority" name="priority" placeholder="priority" value={todo.priority} onChange={handleChange} />
-            {/*             <input placeholder="Description" onChange={handleChangeDescription} value={description} type="text" />
-            <input placeholder="Date" onChange={handleChangeDate} value={date} type="date" /> */}
-            <button onClick={addTodo}>Add</button>
+            </div> */}
 
-            {/*             <ToDoTable todos={todos} deleteEvent={handleDelete} /> */}
+            <Stack mt={2} direction="row" spacing={2} justifyContent="center" alignItems="center">
+
+                <TextField
+                    label="Description"
+                    name="description"
+                    value={todo.description}
+                    onChange={handleChange}
+                />
+
+                <MobileDatePicker
+                    label="Date"
+                    name="date"
+                    value={todo.date}
+                    onChange={handleChangeDate}
+                />
+                {/*                 <TextField
+                    label="Date"
+                    name="date"
+                    value={todo.date}
+                    onChange={handleChange}
+                /> */}
+
+                <TextField
+                    label="Priority"
+                    name="priority"
+                    value={todo.priority}
+                    onChange={handleChange}
+                />
+
+
+
+                <Button variant="outlined" onClick={addTodo}>Add</Button>
+
+            </Stack>
+
             <ToDoGrid todos={todos} deleteEvent={handleDelete} />
         </>
     );
